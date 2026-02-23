@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Webhook Manager Mobile</title>
+    <style>
+        /* 全体設定 */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            padding: 10px; 
+            margin: 0; 
+            background: #f0f2f5; 
+            color: #333;
+        }
+        h2 { font-size: 1.2rem; text-align: center; margin: 15px 0; }
+        h3 { font-size: 1rem; margin-top: 0; }
+
+        /* カードデザイン */
+        .card { 
+            background: white; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 12px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
+        }
+
+        /* 入力エリア */
+        .input-group { margin-bottom: 12px; }
+        label { display: block; font-size: 0.8rem; color: #666; margin-bottom: 4px; }
+        
+        input { 
+            width: 100%; 
+            padding: 12px; /* タップしやすい高さ */
+            font-size: 16px; /* iOSの自動ズーム防止 */
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            background: #fafafa;
+        }
+
+        /* ボタンデザイン */
+        .btn { 
+            display: inline-block;
+            width: 100%; 
+            padding: 14px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+        .btn:active { opacity: 0.7; } /* タップ時の反応 */
+
+        .btn-send { background: #28a745; color: white; margin-top: 8px; }
+        .btn-save { background: #007bff; color: white; margin: 20px 0; }
+        .btn-outline { 
+            background: white; 
+            color: #666; 
+            border: 1px solid #ccc; 
+            font-size: 14px; 
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* 項目番号のラベル */
+        .badge {
+            background: #007bff;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .footer-actions { margin-top: 30px; padding-bottom: 50px; }
+    </style>
+</head>
+<body>
+
+    <h2>Webhook 管理 (5項目)</h2>
+
+    <div id="webhook-list">
+        </div>
+
+    <button class="btn btn-save" onclick="saveAllSettings()">全設定をキャッシュに保存</button>
+
+    <div class="card footer-actions">
+        <h3>設定ファイルの入出力</h3>
+        <button class="btn btn-outline" onclick="exportSettings()">設定を書き出す (.txt)</button>
+        <button class="btn btn-outline" onclick="document.getElementById('import-file').click()">ファイルから読み込む</button>
+        <input type="file" id="import-file" style="display:none" onchange="importSettings(event)">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
